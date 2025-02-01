@@ -1,4 +1,7 @@
+using BeeFacts.Behavior;
 using BeeFacts.Data;
+using BeeFacts.Repository;
+using BeeFacts.Singletons;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,7 +13,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContextPool<BeeFactContext>(opt =>
-    opt.UseNpgsql(builder.Configuration.GetConnectionString("BloggingContext")));
+    opt.UseNpgsql(builder.Configuration.GetConnectionString("BeeFactsContext")));
+builder.Services.AddScoped<IBeeFactsService, BeeFactsService>();
+builder.Services.AddScoped<IBeeFactRepository, BeeFactRepository>();
+builder.Services.AddSingleton<IBeeFactSingleton, BeeFactSingleton>();
 
 
 var app = builder.Build();

@@ -1,8 +1,9 @@
-﻿namespace BeeFacts.Behavior
+﻿using BeeFacts.Models;
+
+namespace BeeFacts.Behavior
 {
-    interface IBeeFactsService
+    public interface IBeeFactsService
     {
-        public string GetRandomBeeFact();
-        public int GetCurrentMaxBeeFacts();
+        public BeeFact GetRandomBeeFact();
     }
 }

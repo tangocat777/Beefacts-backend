@@ -1,15 +1,19 @@
-﻿namespace BeeFacts.Behavior
+﻿using BeeFacts.Models;
+using BeeFacts.Repository;
+
+namespace BeeFacts.Behavior
 {
     public class BeeFactsService : IBeeFactsService
     {
-        public int GetCurrentMaxBeeFacts()
+        private IBeeFactRepository _repo;
+        public BeeFactsService(IBeeFactRepository repo)
         {
-            throw new NotImplementedException();
+            _repo = repo;
         }
 
-        public string GetRandomBeeFact()
+        public BeeFact GetRandomBeeFact()
         {
-            throw new NotImplementedException();
+            return _repo.GetRandomBeeFact();
         }
     }
 }

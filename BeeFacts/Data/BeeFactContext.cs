@@ -1,5 +1,6 @@
 ﻿using BeeFacts.Models;
 using Microsoft.EntityFrameworkCore;
+using DbContext = Microsoft.EntityFrameworkCore.DbContext;
 
 namespace BeeFacts.Data
 {
@@ -10,6 +11,6 @@ namespace BeeFacts.Data
 
         }
 
-        DbSet<BeeFact> BeeFacts { get; set; }
+        public DbSet<BeeFact> BeeFacts { get; set; }
     }
 }
