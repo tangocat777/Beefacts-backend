@@ -30,5 +30,26 @@ namespace BeeFacts.Controllers
             }
             return Ok(beeFact);
         }
+
+        [HttpPost("BeeFact/Suggestion")]
+        public IActionResult CreateBeeFactSuggestion([FromBody] Suggestion suggestion)
+        {
+            suggestion.Id = GetIPAddress();
+            try
+            {
+                beeFactsService.CreateBeeFactSuggestion(suggestion);
+            }
+            catch (Exception ex)
+            {
+
+                _logger.LogError($"Was not able to create fact suggestions. Cause: {ex.Message}");
+            }
+            return Ok();
+        }
+
+        private string GetIPAddress()
+        {
+            return HttpContext.Connection.RemoteIpAddress?.ToString() ?? "defaultIP";
+        }
     }
 }

@@ -15,5 +15,10 @@ namespace BeeFacts.Behavior
         {
             return _repo.GetRandomBeeFact();
         }
+
+        public Suggestion CreateBeeFactSuggestion(Suggestion suggestion)
+        {
+            return _repo.UpsertSuggestion(suggestion);
+        }
     }
 }

@@ -33,7 +33,23 @@ namespace BeeFacts.Repository
             var count = CountFacts();
             Random r = new Random();
             var randomId = r.Next(0, count);
-            return _context.BeeFacts.Skip(randomId).FirstOrDefault() ?? new BeeFact();
+            return _context.BeeFacts.OrderBy(bf => bf.BeeFactId).Skip(randomId).FirstOrDefault() ?? new BeeFact();
+        }
+
+        public Suggestion UpsertSuggestion(Suggestion suggestion)
+        {
+            var existing = _context.Suggestions.Where(s => s.Id == suggestion.Id).FirstOrDefault();
+            if (existing != null)
+            {
+                existing.Fact = suggestion.Fact;
+                _context.SaveChangesAsync();
+                return suggestion;
+            } else
+            {
+                _context.Suggestions.Add(suggestion);
+                _context.SaveChanges();
+                return suggestion;
+            }
         }
     }
 }

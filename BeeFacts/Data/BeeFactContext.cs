@@ -12,5 +12,6 @@ namespace BeeFacts.Data
         }
 
         public DbSet<BeeFact> BeeFacts { get; set; }
+        public DbSet<Suggestion> Suggestions { get; set; }
     }
 }
